@@ -482,7 +482,7 @@ let publishNuGet (solutions: Solution list) =
     DeleteDir "obj/NuGet"
 
 let publishDocs (release:Release) =
-    let repo = "../web-mathnet-" + release.RepoKey
+    let repo = "../mathnet-" + release.RepoKey
     Git.Branches.pull repo "origin" "gh-pages"
     CopyRecursive "out/docs" repo true |> printfn "%A"
     Git.Staging.StageAll repo
@@ -490,7 +490,7 @@ let publishDocs (release:Release) =
     Git.Branches.pushBranch repo "origin" "gh-pages"
 
 let publishApi (release:Release) =
-    let repo = "../web-mathnet-" + release.RepoKey
+    let repo = "../mathnet-" + release.RepoKey
     Git.Branches.pull repo "origin" "gh-pages"
     CleanDir (repo + "/api")
     CopyRecursive "out/api" (repo + "/api") true |> printfn "%A"
